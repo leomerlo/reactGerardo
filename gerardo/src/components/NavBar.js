@@ -8,7 +8,7 @@ function NavBar() {
   return (
     <header>
       <div className="flex justify-between m-3 items-center">
-        <div className="m-3"></div>
+        <div className="m-3"> </div>
         <div className="m-3">
           <img src={logo} className="w-24" alt="logo" />
           <span className="text-xs">Mushroomania</span>
