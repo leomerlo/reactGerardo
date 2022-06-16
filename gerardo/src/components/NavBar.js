@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from '../assets/logo.png';
+import CartWidget from './CartWidget';
 import './NavBar.css';
 
 function NavBar() {
@@ -9,10 +10,10 @@ function NavBar() {
         <div className="m-3"> </div>
         <div className="m-3 text-center">
           <img src={logo} className="w-24" alt="logo" />
-          <span className="text-xs">Gerardo</span>
+          <span className="text-xs m-2 block">Gerardo</span>
         </div>
         <div className="m-3">
-          
+          <CartWidget />
         </div>
       </div>
       <div className="flex justify-center m-3">
