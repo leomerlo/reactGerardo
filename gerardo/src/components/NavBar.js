@@ -17,9 +17,9 @@ function NavBar() {
       </div>
       <div className="flex justify-center m-3">
         <ul className='flex'>
-          <li><a href="#" className="p-5 text-sm">Home</a></li>
-          <li><a href="#" className="p-5 text-sm">Nosotros</a></li>
-          <li><a href="#" className="p-5 text-sm">Contacto</a></li>
+          <li><a href="#" className="p-5 text-sm">Hongos</a></li>
+          <li><a href="#" className="p-5 text-sm">Insumos</a></li>
+          <li><a href="#" className="p-5 text-sm">Guias</a></li>
         </ul>
       </div>
     </header>
