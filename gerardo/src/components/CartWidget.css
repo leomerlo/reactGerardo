@@ -1,0 +1,7 @@
+.cartButton {
+    @apply relative pt-5 pr-5;
+}
+
+.cartBadge {
+    @apply flex justify-center items-center rounded-full bg-primary text-primary_alt w-5 h-5 text-xs absolute top-0 right-0;
+}

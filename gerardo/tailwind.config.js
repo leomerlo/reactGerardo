@@ -5,8 +5,9 @@ module.exports = {
   ],
   theme: {
     colors: {
-      'primary': '#666',
-      'accent': '#000',
+      'primary': '#000',
+      'primary_alt': '#FFF',
+      'accent': '#666',
     },
   },
   plugins: [],
