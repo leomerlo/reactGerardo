@@ -1,13 +1,15 @@
 import React from 'react';
 import './App.css';
-import Body from './components/Body';
+import ItemListContainer from './components/ItemListContainer';
 import NavBar from './components/NavBar';
 
 function App() {
   return (
     <div>
       <NavBar />
-      <Body />
+      <main>
+        <ItemListContainer greeting="Saludos, terricolas" />
+      </main>
     </div>
   );
 }
