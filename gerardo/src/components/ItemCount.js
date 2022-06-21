@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './ItemCount.css';
 
-function ItemCount({ stock }) {
+function ItemCount({ stock, onAdd }) {
     const [num, setNum] = useState(1);
     const [error, setError] = useState('');
     const addItem = () => {
@@ -32,7 +32,7 @@ function ItemCount({ stock }) {
     const addToCart = () => {
         resetError();
         if(validatePositive(num) && validateStock(num)) {
-            console.log(`Seleccionaste ${ num } productos`);
+            onAdd(num);
         }
     }
 
