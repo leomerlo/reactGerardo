@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Container from './components/Container';
+import ItemListContainer from './components/ItemListContainer';
 import NavBar from './components/NavBar';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <div>
       <NavBar />
       <main className="container mx-auto">
-        <Container />
+        <ItemListContainer />
       </main>
     </div>
   );

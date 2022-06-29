@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ItemList from './ItemList';
 import './ItemListContainer.css';
 
-function ItemListContainer({ greeting }) {
+function ItemListContainer() {
+
+    let [list, setList] = useState([]);
+
+    useEffect(() => {
+        setTimeout(() => {
+            fetch('data.json')
+            .then(resp => resp.json())
+            .then(data => setList(data))
+        },2000);
+    }, []);
+
     return (
         <div className="mt-8 text-center">
-            <ItemList />
+            <ItemList list={list} />
         </div>
     );
 }
