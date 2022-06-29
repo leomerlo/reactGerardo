@@ -7,8 +7,8 @@ function App() {
   return (
     <div>
       <NavBar />
-      <main>
-        <ItemListContainer greeting="Saludos, terricolas" />
+      <main className="container mx-auto">
+        <ItemListContainer />
       </main>
     </div>
   );

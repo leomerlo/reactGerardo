@@ -1,0 +1,27 @@
+.itemCountWrapper {
+    @apply flex flex-col;
+}
+
+.itemCountInputWrapper {
+    @apply flex border-2 border-primary;
+}
+
+    .itemCountInputWrapper.error {
+       @apply border-error_msg; 
+    }
+
+.itemCountButton {
+    @apply p-5 text-lg;
+}
+
+.itemCountInput {
+    @apply p-5 text-lg flex-1;
+}
+
+.itemCountAddToCart {
+    @apply p-3 mt-3 bg-primary text-primary_alt text-lg block
+}
+
+.errorMessage {
+    @apply text-sm text-error_msg text-left;
+}  

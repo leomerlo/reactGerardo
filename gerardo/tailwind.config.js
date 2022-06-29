@@ -8,6 +8,7 @@ module.exports = {
       'primary': '#000',
       'primary_alt': '#FFF',
       'accent': '#666',
+      'error_msg': 'rgb(185 28 28)'
     },
   },
   plugins: [],
