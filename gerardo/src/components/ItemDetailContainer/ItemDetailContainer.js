@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import './ItemDetailContainer.css';
 import loading from '../../assets/loading.svg';
-import ItemCount from '../ItemCount/ItemCount'
 import Breadcrumb from '../Breadcrumb/Breadcrumb'
+import ItemDetail from '../ItemDetail/ItemDetail'
 
 const ItemDetailContainer = ({ id }) => {
 
@@ -37,17 +37,7 @@ const ItemDetailContainer = ({ id }) => {
                         <Breadcrumb name={ itemDetail.name } />
                     </div>
                     <div className="item-detail-wrapper flex my-8">
-                        <div className="item-detail-image flex-auto w-64">
-                        <img className="mx-auto" src={itemDetail.image} alt={itemDetail.name} />
-                        </div>
-                        <div className="item-detail-details flex-1">
-                            <div className="item-detail-data-wrapper">
-                                <span className="text-base my-2">{ itemDetail.name }</span>
-                                <span className="uppercase my-2">{ itemDetail.brand }</span>
-                                <span className="my-2 text-sm">${ itemDetail.price }</span>
-                                <ItemCount stock={ itemDetail.stock } />
-                            </div>
-                        </div>
+                        <ItemDetail {...itemDetail} />
                     </div>
                 </div>
                 :
