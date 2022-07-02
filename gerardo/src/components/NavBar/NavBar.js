@@ -2,6 +2,7 @@ import React from 'react';
 import logo from '../../assets/logo.png';
 import CartWidget from '../CartWidget/CartWidget';
 import './NavBar.css';
+import { NavLink, Link } from 'react-router-dom'
 
 function NavBar() {
   return (
@@ -9,8 +10,10 @@ function NavBar() {
       <div className="flex justify-between m-3 items-center">
         <div className="m-3 flex-1"> </div>
         <div className="menuLogo">
-          <img src={logo} className="w-24" alt="logo" />
-          <span className="text-xs m-2 block">Gerardo</span>
+          <Link to="/">
+            <img src={logo} className="w-24" alt="logo" />
+            <span className="text-xs m-2 block">Gerardo</span>
+          </Link>
         </div>
         <div className="m-3 flex-1 flex justify-end">
           <CartWidget items="5" />
@@ -18,9 +21,10 @@ function NavBar() {
       </div>
       <div className="flex justify-center m-3">
         <ul className='flex menuList'>
-          <li><a href="#" className="menuItem active">Hongos</a></li>
-          <li><a href="#" className="menuItem">Insumos</a></li>
-          <li><a href="#" className="menuItem">Guias</a></li>
+          <li><NavLink className="menuItem" to={`/`} activeclassname="true">Home</NavLink></li>
+          <li><NavLink className="menuItem" to={`/categories/1`} activeclassname="true">Hongos</NavLink></li>
+          <li><NavLink className="menuItem" to={`/categories/2`} activeclassname="true">Insumos</NavLink></li>
+          <li><NavLink className="menuItem" to={`/categories/3`} activeclassname="true">Guias</NavLink></li>
         </ul>
       </div>
     </header>

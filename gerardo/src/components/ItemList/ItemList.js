@@ -4,11 +4,9 @@ import './ItemList.css';
 
 function ItemList({ list }) {
 
-    
-
     return (
         <section className="item-list">
-            {list.map(item => <ItemCard key={item.id} name={item.name} brand={item.brand} price={item.price}/>)}
+            {list.map(item => <ItemCard key={item.id} { ...item } />)}
         </section>
     );
 }
