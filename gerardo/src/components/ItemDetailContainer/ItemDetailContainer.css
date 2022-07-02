@@ -1,0 +1,3 @@
+.item-detail-data-wrapper {
+    @apply flex flex-col border border-accent/10 p-5;
+}

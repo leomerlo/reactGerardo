@@ -1,14 +1,14 @@
 import React from 'react';
 import './App.css';
-import ItemListContainer from './components/ItemListContainer';
-import NavBar from './components/NavBar';
+import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
+import NavBar from './components/NavBar/NavBar';
 
 function App() {
   return (
-    <div>
+    <div className="container mx-auto px-4">
       <NavBar />
-      <main className="container mx-auto">
-        <ItemListContainer />
+      <main>
+        <ItemDetailContainer id="2" />
       </main>
     </div>
   );

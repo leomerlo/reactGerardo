@@ -23,7 +23,7 @@ function ItemCount({ stock, onAdd }) {
     const changeItemNum = (e) => {
         resetError();
         const value = parseInt(e.target.value);
-        if(value != '' && value >= 0 && validateStock(value)) {
+        if(value !== '' && value >= 0 && validateStock(value)) {
             setNum(parseInt(value));
         } else {
             setError('Hay un error con el valor, no puede estar vacio, ser negativo o mayor al stock actual.')
