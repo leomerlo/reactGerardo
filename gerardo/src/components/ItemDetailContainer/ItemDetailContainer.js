@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import Loading from '../Loading/Loading'
 import Breadcrumb from '../Breadcrumb/Breadcrumb'
 import ItemDetail from '../ItemDetail/ItemDetail'
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 const ItemDetailContainer = ({ id }) => {
 
@@ -36,7 +37,7 @@ const ItemDetailContainer = ({ id }) => {
     return (
         <>
             {
-                errors !== '' ? <div className="text-center text-lg m-5">Se encontró un error. Volvé atras e intentalo de nuevo.</div> :
+                errors !== '' ? <ErrorMessage message="Se encontró un error. Volvé atras e intentalo de nuevo." /> :
                 
                 loading ?
                 <Loading />

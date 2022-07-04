@@ -21,7 +21,7 @@ function NavBar() {
       </div>
       <div className="flex justify-center m-3">
         <ul className='flex menuList'>
-          <li><NavLink className="menuItem" to={`/`} activeclassname="true">Home</NavLink></li>
+          <li><NavLink className="menuItem" to={`/`} activeclassname="true">Todos los productos</NavLink></li>
           <li><NavLink className="menuItem" to={`/categories/1`} activeclassname="true">Hongos</NavLink></li>
           <li><NavLink className="menuItem" to={`/categories/2`} activeclassname="true">Insumos</NavLink></li>
           <li><NavLink className="menuItem" to={`/categories/3`} activeclassname="true">Guias</NavLink></li>
