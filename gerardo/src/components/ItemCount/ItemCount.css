@@ -3,7 +3,7 @@
 }
 
 .itemCountInputWrapper {
-    @apply flex border-2 border-primary my-2;
+    @apply flex border-2 border-primary flex-1;
 }
 
     .itemCountInputWrapper.error {
@@ -19,7 +19,7 @@
 }
 
 .itemCountAddToCart {
-    @apply p-2 mt-3 bg-primary text-primary_alt text-lg block
+    @apply p-2 bg-primary text-primary_alt text-lg block ml-2
 }
 
 .errorMessage {

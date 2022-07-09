@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './ItemCount.css';
 
 function ItemCount({ stock, onAdd }) {
+
     const [num, setNum] = useState(1);
     const [error, setError] = useState('');
     const addItem = () => {
@@ -33,6 +34,7 @@ function ItemCount({ stock, onAdd }) {
         resetError();
         if(validatePositive(num) && validateStock(num)) {
             onAdd(num);
+            setNum(1);
         }
     }
 
@@ -47,12 +49,14 @@ function ItemCount({ stock, onAdd }) {
         <div className="itemCountWrapper">
             <span className="text-sm text-left">Stock: { stock }</span>
             <span className="errorMessage">{ error }</span>
-            <div className="itemCountInputWrapper">
-                <button className="itemCountButton" onClick={removeItem}>-</button>
-                <input className="itemCountInput" type="number" onChange={changeItemNum} value={num} />
-                <button className="itemCountButton" onClick={addItem}>+</button>
+            <div className="flex my-3">
+                <div className="itemCountInputWrapper">
+                    <button className="itemCountButton" onClick={removeItem}>-</button>
+                    <input className="itemCountInput" type="number" onChange={changeItemNum} value={num} />
+                    <button className="itemCountButton" onClick={addItem}>+</button>
+                </div>
+                <button className="itemCountAddToCart" onClick={addToCart}>Agregar al carro</button>
             </div>
-            <button className="itemCountAddToCart" onClick={addToCart}>Agregar al carro</button>
         </div>
     );
 }
