@@ -14,7 +14,6 @@ function ItemListContainer() {
 
     useEffect(() => {
         setLoading(true);
-        console.log('Fetch')
         setTimeout(() => {
             fetch('/data.json')
             .then(resp => resp.json())
@@ -28,11 +27,9 @@ function ItemListContainer() {
     useEffect(() => {
         const filterListByCategory = (catId) => {
             setList(fetchList.filter((e) => e.category === catId));
-            console.log('filterList - List: ', list);
         }
 
         if(params.catId && fetchList.length > 0) {    
-            console.log('useEffectParams - Fetch: ', fetchList);
             filterListByCategory(params.catId);
         } else {
             setList(fetchList);
