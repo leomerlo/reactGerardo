@@ -1,17 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import './ItemDetail.css';
 import ItemCount from '../ItemCount/ItemCount'
 import { useNavigate } from "react-router-dom";
+import CartContext from '../../store/CartContext';
 
-const ItemDetail = ({ image, name, brand, price, stock }) => {
+const ItemDetail = ({ id, image, name, brand, price, stock }) => {
 
-    let navigate = useNavigate()
+    const navigate = useNavigate()
+    const context = useContext(CartContext);
 
     const [reactiveStock, setReactiveStock] = useState(stock);
 
     const itemAddHandler = (ammount) => {
         const newAmmount = reactiveStock - ammount;
         setReactiveStock(newAmmount);
+        context.addItem({
+            id,
+            image,
+            name,
+            price,
+        }, ammount)
     }
 
     const checkoutHandler = () => {

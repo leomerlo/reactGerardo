@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import './CartWidget.css';
+import CartContext from '../../store/CartContext';
 
-function CartWidget({ items }) {
+function CartWidget() {
+
+    const context = useContext(CartContext);
+
   return (
     <button
         className="cartButton"
@@ -15,13 +19,13 @@ function CartWidget({ items }) {
         <span
             className="sr-only"
         >
-            Tenés { items } en el carro.
+            Tenés { context.totalItems() } en el carro.
         </span>
         <span
             aria-hidden
             className="cartBadge"
         >
-            { items }
+            { context.totalItems() }
         </span>
     </button>
   );

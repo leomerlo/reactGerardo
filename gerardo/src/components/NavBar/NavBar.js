@@ -16,7 +16,7 @@ function NavBar() {
           </Link>
         </div>
         <div className="m-3 flex-1 flex justify-end">
-          <CartWidget items="5" />
+          <CartWidget />
         </div>
       </div>
       <div className="flex justify-center m-3">
