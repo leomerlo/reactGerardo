@@ -1,0 +1,3 @@
+.item-list {
+    @apply grid grid-cols-5 gap-4;
+}

@@ -1,0 +1,32 @@
+.item-card-wrapper {
+    @apply my-2;
+}
+
+    .item-card-wrapper .item-card-image {
+        overflow: hidden;
+        width: 300px;
+        height: 300px;
+        @apply mb-2;
+    }
+
+        .item-card-wrapper .item-card-image .item-card-image-img {
+            width: 300px;
+        }
+
+    .item-card-wrapper:hover .item-card-image img {
+        @apply relative;
+        transform: scale(1.5);
+    }
+
+.item-card-details {
+    @apply flex flex-col text-left;
+    width: 300px;
+}
+
+.item-card-details span {
+    margin: 0.1rem;
+}
+
+.item-card-name {
+    text-transform: uppercase;
+}

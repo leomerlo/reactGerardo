@@ -1,0 +1,7 @@
+.item-detail-data-wrapper {
+    @apply flex flex-col border border-accent/10 p-5;
+}
+
+.item-details-checkout-btn {
+    @apply p-2 mt-3 bg-primary text-primary_alt text-lg block
+}
