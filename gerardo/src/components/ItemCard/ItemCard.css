@@ -9,6 +9,10 @@
         @apply mb-2;
     }
 
+        .item-card-wrapper .item-card-image .item-card-image-img {
+            width: 300px;
+        }
+
     .item-card-wrapper:hover .item-card-image img {
         @apply relative;
         transform: scale(1.5);
