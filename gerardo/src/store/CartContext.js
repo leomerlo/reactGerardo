@@ -8,7 +8,7 @@ const CartContext = React.createContext({
     totalItems: () => {}
 })
 
-export const CartContextProvider = () => {
+export const CartContextProvider = ({ children }) => {
 
     const [cartList, setCartList] = useState([]);
     
@@ -69,6 +69,7 @@ export const CartContextProvider = () => {
             clear: clearHandler,
             totalItems: totalItemsHandler
         }}>
+            { children }
         </CartContext.Provider>
     )
 }
