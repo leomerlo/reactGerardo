@@ -13,7 +13,7 @@ const ItemDetail = ({ image, name, brand, price, stock }) => {
                 <span className="text-base my-2">{ name }</span>
                 <span className="uppercase my-2">{ brand }</span>
                 <span className="my-2 text-sm">${ price }</span>
-                <ItemCount stock={ stock } />
+                { stock > 0 ? <ItemCount stock={ stock } /> : <span className="text-sm">No hay stock disponible</span> }
             </div>
         </div>
     </>

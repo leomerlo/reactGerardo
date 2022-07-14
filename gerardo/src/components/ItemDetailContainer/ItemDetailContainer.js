@@ -1,20 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import './ItemDetailContainer.css';
-import loading from '../../assets/loading.svg';
+import { useParams } from 'react-router-dom';
+import Loading from '../Loading/Loading'
 import Breadcrumb from '../Breadcrumb/Breadcrumb'
 import ItemDetail from '../ItemDetail/ItemDetail'
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 const ItemDetailContainer = ({ id }) => {
 
     const [itemDetail, setItemDetail] = useState({});
     const [errors, setErrors] = useState('');
+    const [loading, setLoading] = useState(true);
+
+    const params = useParams();
 
     useEffect(() => {
         setTimeout(() => {
-            fetch('./data.json')
+            fetch('/data.json')
             .then((res) => res.json())
             .then((data) => {
-                const item = data.find((e) => e.id === parseInt(id));
+                setLoading(false);
+                const item = data.find((e) => e.id === parseInt(params.prodId));
                 if(!item) {
                     throw new Error('No se encontró el producto que buscabas.')
                 }
@@ -24,14 +30,18 @@ const ItemDetailContainer = ({ id }) => {
                 setErrors(e);
             })
         },2000);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
         <>
             {
-                errors !== '' ? <div className="text-center text-lg m-5">Se encontró un error. Volvé atras e intentalo de nuevo.</div> :
+                errors !== '' ? <ErrorMessage message="Se encontró un error. Volvé atras e intentalo de nuevo." /> :
                 
-                itemDetail.name ?
+                loading ?
+                <Loading />
+                :
                 <div>
                     <div className="item-detail-breadcrumb">
                         <Breadcrumb name={ itemDetail.name } />
@@ -39,10 +49,6 @@ const ItemDetailContainer = ({ id }) => {
                     <div className="item-detail-wrapper flex my-8">
                         <ItemDetail {...itemDetail} />
                     </div>
-                </div>
-                :
-                <div>
-                    <object className="mx-auto my-8 w-32" data={ loading } type="image/svg+xml" aria-label="Cargando Datos" />
                 </div>
             }
         </>
