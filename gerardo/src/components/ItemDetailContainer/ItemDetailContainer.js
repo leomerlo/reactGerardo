@@ -29,7 +29,7 @@ const ItemDetailContainer = ({ id }) => {
             .catch((e) => {
                 setErrors(e);
             })
-        },2000);
+        },0);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

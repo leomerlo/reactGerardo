@@ -7,18 +7,19 @@ import CartContext from '../../store/CartContext';
 const ItemDetail = ({ id, image, name, brand, price, stock }) => {
 
     const navigate = useNavigate()
-    const context = useContext(CartContext);
+    const { addItem, totalItems } = useContext(CartContext);
 
     const [reactiveStock, setReactiveStock] = useState(stock);
 
     const itemAddHandler = (ammount) => {
         const newAmmount = reactiveStock - ammount;
         setReactiveStock(newAmmount);
-        context.addItem({
+        addItem({
             id,
             image,
             name,
             price,
+            brand,
         }, ammount)
     }
 
@@ -37,7 +38,7 @@ const ItemDetail = ({ id, image, name, brand, price, stock }) => {
                 <span className="uppercase my-2">{ brand }</span>
                 <span className="my-2 text-sm">${ price }</span>
                 { reactiveStock > 0 ? <ItemCount stock={ reactiveStock } onAdd={itemAddHandler} /> : <span className="text-sm">No hay stock disponible</span> }
-                <button className="item-details-checkout-btn" onClick={checkoutHandler} >Terminar mi compra</button>
+                { totalItems() > 0 ? <button className="item-details-checkout-btn" onClick={checkoutHandler} >Terminar mi compra</button> : <></> }
             </div>
         </div>
     </>

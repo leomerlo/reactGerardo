@@ -21,7 +21,7 @@ function ItemListContainer() {
                 setLoading(false);
                 setFetchList(data);
             })
-        },2000);
+        },0);
     }, []);
 
     useEffect(() => {

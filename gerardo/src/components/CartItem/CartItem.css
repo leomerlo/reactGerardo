@@ -1,0 +1,19 @@
+.cart-list-item {
+  @apply grid grid-cols-10 gap-4 my-2
+}
+
+.cart-list-item > div {
+  @apply flex justify-center flex-col
+}
+
+.cart-item-title {
+  @apply col-span-6 pl-16
+}
+
+.cart-item-title h2 {
+  @apply text-sm mb-2
+}
+
+.cart-item-image img {
+  max-width: 100%;
+}

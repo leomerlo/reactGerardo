@@ -5,7 +5,8 @@ const CartContext = React.createContext({
     addItem: (item,qty) => {},
     removeItem: (id) => {},
     clear: () => {},
-    totalItems: () => {}
+    totalItems: () => {},
+    totalPrice: () => {},
 })
 
 export const CartContextProvider = ({ children }) => {
@@ -33,33 +34,43 @@ export const CartContextProvider = ({ children }) => {
           ]
         }
         setCartList(newCart);
-      }
-    
-      const removeItemHandler = (id) => {
-        const newCart = cartList.map((e, index) => {
-          if(e.id === id){
-            cartList.splice(index,1);
-          }
-          return e;
-        });
-        setCartList(newCart);
-      }
-    
-      const itemExists = (id) => {
-        return cartList.find((e) => e.id === id);
-      }
-    
-      const totalItemsHandler = () => {
-        let totalAmmount = 0;
-        cartList.map((e) => {
-          return totalAmmount += e.quantity
-        })
-        return totalAmmount;
-      }
-    
-      const clearHandler = () => {
-        setCartList([])
-      }
+    }
+  
+    const removeItemHandler = (id) => {
+      console.log('id: ', id);
+      const newCart = [...cartList];
+      newCart.map((e, index) => {
+        if(e.id === parseInt(id)){
+          newCart.splice(index,1);
+        }
+        return e;
+      });
+      setCartList(newCart);
+    }
+  
+    const itemExists = (id) => {
+      return cartList.find((e) => e.id === id);
+    }
+  
+    const totalItemsHandler = () => {
+      let totalAmmount = 0;
+      cartList.forEach((e) => {
+        totalAmmount += e.quantity
+      })
+      return totalAmmount;
+    }
+
+    const totalPriceHandler = () => {
+      let totalPrice = 0;
+      cartList.forEach((e) => {
+        totalPrice += e.quantity * e.price
+      })
+      return totalPrice;
+    }
+  
+    const clearHandler = () => {
+      setCartList([])
+    }
 
     return (
         <CartContext.Provider value={{
@@ -67,7 +78,8 @@ export const CartContextProvider = ({ children }) => {
             addItem: addItemHandler,
             removeItem: removeItemHandler,
             clear: clearHandler,
-            totalItems: totalItemsHandler
+            totalItems: totalItemsHandler,
+            totalPrice: totalPriceHandler
         }}>
             { children }
         </CartContext.Provider>

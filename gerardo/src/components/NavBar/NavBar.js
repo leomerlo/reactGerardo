@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import logo from '../../assets/logo.png';
 import CartWidget from '../CartWidget/CartWidget';
 import './NavBar.css';
 import { NavLink, Link } from 'react-router-dom'
+import CartContext from '../../store/CartContext';
 
 function NavBar() {
+
+  const { totalItems } = useContext(CartContext);
+
   return (
     <header>
       <div className="flex justify-between m-3 items-center">
@@ -16,7 +20,11 @@ function NavBar() {
           </Link>
         </div>
         <div className="m-3 flex-1 flex justify-end">
-          <CartWidget />
+          {
+            totalItems() > 0 ?
+            <CartWidget />:
+            <></>
+          }
         </div>
       </div>
       <div className="flex justify-center m-3">

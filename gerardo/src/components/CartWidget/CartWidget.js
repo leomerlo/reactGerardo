@@ -3,14 +3,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import './CartWidget.css';
 import CartContext from '../../store/CartContext';
+import { Link } from 'react-router-dom';
 
 function CartWidget() {
 
     const context = useContext(CartContext);
 
   return (
-    <button
+    <Link
         className="cartButton"
+        to="/cart"
     >
         <FontAwesomeIcon
             className="text-lg"
@@ -27,7 +29,7 @@ function CartWidget() {
         >
             { context.totalItems() }
         </span>
-    </button>
+    </Link>
   );
 }
 

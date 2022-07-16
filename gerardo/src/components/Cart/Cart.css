@@ -1,0 +1,23 @@
+.page-title-header {
+  @apply text-lg text-center p-4 border-y border-y-primary/20 mb-5 mt-10
+}
+
+.cart-empty {
+  @apply text-center
+}
+
+.cart-empty .title {
+  @apply text-sm mb-2
+}
+
+.total-wrapper {
+  @apply grid grid-cols-10 border-t border-t-primary/20 py-4
+}
+
+.total-label {
+  @apply col-span-9 text-right text-lg
+}
+
+.total-value {
+  @apply col-span-1 text-right text-lg
+}
