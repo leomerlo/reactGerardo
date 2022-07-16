@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 import './ItemListContainer.css';
 import ItemList from '../ItemList/ItemList';
 import Loading from '../Loading/Loading';
-
+import { getFirestore, collection, getDocs, doc } from 'firebase/firestore';
+ 
 function ItemListContainer() {
 
     let [fetchList, setFetchList] = useState([]);
@@ -14,14 +15,16 @@ function ItemListContainer() {
 
     useEffect(() => {
         setLoading(true);
-        setTimeout(() => {
-            fetch('/data.json')
-            .then(resp => resp.json())
-            .then(data => {
-                setLoading(false);
-                setFetchList(data);
-            })
-        },0);
+        const db = getFirestore();
+
+        const productRef = collection(db, 'products')
+
+        getDocs(productRef).then((snapshot) => {
+            setFetchList(snapshot.docs.map((doc) => {
+                return { ...doc.data(), id: doc.id }
+            }))
+            setLoading(false);
+        })
     }, []);
 
     useEffect(() => {
