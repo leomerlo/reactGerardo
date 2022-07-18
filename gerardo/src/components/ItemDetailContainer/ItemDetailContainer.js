@@ -5,6 +5,7 @@ import Loading from '../Loading/Loading'
 import Breadcrumb from '../Breadcrumb/Breadcrumb'
 import ItemDetail from '../ItemDetail/ItemDetail'
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import { getFirestore, doc, getDoc } from 'firebase/firestore';
 
 const ItemDetailContainer = ({ id }) => {
 
@@ -15,22 +16,18 @@ const ItemDetailContainer = ({ id }) => {
     const params = useParams();
 
     useEffect(() => {
-        setTimeout(() => {
-            fetch('/data.json')
-            .then((res) => res.json())
-            .then((data) => {
-                setLoading(false);
-                const item = data.find((e) => e.id === parseInt(params.prodId));
-                if(!item) {
-                    throw new Error('No se encontró el producto que buscabas.')
+        try {
+            const db = getFirestore();
+            const productRef = doc(db, 'products', id)
+            getDoc(productRef).then((snapshot) => {
+                if(snapshot.exists) {
+                    setLoading(false);
+                    setItemDetail(snapshot);
                 }
-                setItemDetail(item);
             })
-            .catch((e) => {
-                setErrors(e);
-            })
-        },0);
-
+        } catch (e) {
+            setErrors(e);
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
