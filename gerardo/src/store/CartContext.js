@@ -37,13 +37,13 @@ export const CartContextProvider = ({ children }) => {
     }
   
     const removeItemHandler = (id) => {
-      console.log('id: ', id);
       const newCart = [...cartList];
-      newCart.map((e, index) => {
-        if(e.id === parseInt(id)){
-          newCart.splice(index,1);
+      newCart.forEach((e, index) => {
+        console.log(e.id);
+        console.log(id);
+        if(e.id === id){
+            newCart.splice(index,1);
         }
-        return e;
       });
       setCartList(newCart);
     }

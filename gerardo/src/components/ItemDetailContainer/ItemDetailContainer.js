@@ -7,7 +7,7 @@ import ItemDetail from '../ItemDetail/ItemDetail'
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 
-const ItemDetailContainer = ({ id }) => {
+const ItemDetailContainer = () => {
 
     const [itemDetail, setItemDetail] = useState({});
     const [errors, setErrors] = useState('');
@@ -18,14 +18,19 @@ const ItemDetailContainer = ({ id }) => {
     useEffect(() => {
         try {
             const db = getFirestore();
-            const productRef = doc(db, 'products', id)
+            const productRef = doc(db, 'products', params.prodId)
             getDoc(productRef).then((snapshot) => {
                 if(snapshot.exists) {
                     setLoading(false);
-                    setItemDetail(snapshot);
+                    const item = {
+                        ...snapshot.data(),
+                        id: snapshot.id
+                    }
+                    setItemDetail(item);
                 }
             })
         } catch (e) {
+            console.log(e);
             setErrors(e);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
