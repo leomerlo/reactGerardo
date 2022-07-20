@@ -21,3 +21,20 @@
 .total-value {
   @apply col-span-1 text-right text-lg
 }
+
+.user-form h3 {
+  @apply text-lg
+}
+
+.form-row {
+  @apply my-2;
+}
+
+.form-row label,
+.form-row input {
+  @apply text-sm;
+}
+
+.form-row input {
+  @apply border-b border-b-primary ml-2;
+}

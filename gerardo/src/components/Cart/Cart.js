@@ -9,6 +9,7 @@ const Cart = () => {
 
   const { cartList, removeItem, totalPrice } = useContext(CartContext)
   const [ orderFinished, setOrderFinished ] = useState('')
+  const [ orderStep, setOrderStep ] = useState(0)
   const [user, setUser] = useState({
     name: 'Leo',
     phone: '+5491123997318',
@@ -18,6 +19,11 @@ const Cart = () => {
 
   const onRemoveHandler = (id) => {
     removeItem(id)
+  }
+
+  const moveStep = (e) => {
+    e.preventDefault();
+    setOrderStep(1);
   }
 
   const finalizarCompra = () => {
@@ -58,32 +64,60 @@ const Cart = () => {
         {
           cartList.length > 0 ?
             <>
-              <ul>
               {
-                cartList.map((cartItem) => {
-                  return (
-                    <li key={cartItem.id}>
-                      <CartItem { ...cartItem } onRemove={onRemoveHandler} />
-                    </li>
-                  )
-                })
+                orderStep == 0 ?
+                  <>
+                    <ul>
+                    {
+                      cartList.map((cartItem) => {
+                        return (
+                          <li key={cartItem.id}>
+                            <CartItem { ...cartItem } onRemove={onRemoveHandler} />
+                          </li>
+                        )
+                      })
+                    }
+                    </ul>
+                    <div className="total-wrapper">
+                      <div className="total-label">
+                        <span>Total:</span>
+                      </div>
+                      <div className="total-value">
+                        <span>${totalPrice()}</span>
+                      </div>
+                    </div>
+                    <div className="total-wrapper">
+                      <div className="total-label">
+                      </div>
+                      <div className="total-value">
+                        <button onClick={moveStep}>Finalizar compra</button>
+                      </div>
+                    </div>
+                  </>
+                :
+                  <>
+                    <div className="user-form">
+                      <h3>Dejanos tu información para finalizar tu compra.</h3>
+                      <form>
+                        <div className="form-row">
+                          <label htmlFor="name">Nombre:</label>
+                          <input id="name" name="name" />
+                        </div>
+                        <div className="form-row">
+                          <label htmlFor="phone">Telefono:</label>
+                          <input id="phone" name="phone" />
+                        </div>
+                        <div className="form-row">
+                          <label htmlFor="mail">Mail:</label>
+                          <input id="mail" name="mail" />
+                        </div>
+                        <div className="form-row total-value">
+                          <button type="submit" onClick={finalizarCompra}>Enviar</button>
+                        </div>
+                      </form>
+                    </div>
+                  </>
               }
-              </ul>
-              <div className="total-wrapper">
-                <div className="total-label">
-                  <span>Total:</span>
-                </div>
-                <div className="total-value">
-                  <span>${totalPrice()}</span>
-                </div>
-              </div>
-              <div className="total-wrapper">
-                <div className="total-label">
-                </div>
-                <div className="total-value">
-                  <button onClick={finalizarCompra}>Finalizar compra</button>
-                </div>
-              </div>
             </>
           :
             <div className="cart-empty">
