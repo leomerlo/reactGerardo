@@ -4,7 +4,7 @@ const CartContext = React.createContext({
     cartList: [],
     addItem: (item,qty) => {},
     removeItem: (id) => {},
-    clear: () => {},
+    clearCart: () => {},
     totalItems: () => {},
     totalPrice: () => {},
 })
@@ -39,8 +39,6 @@ export const CartContextProvider = ({ children }) => {
     const removeItemHandler = (id) => {
       const newCart = [...cartList];
       newCart.forEach((e, index) => {
-        console.log(e.id);
-        console.log(id);
         if(e.id === id){
             newCart.splice(index,1);
         }
@@ -77,7 +75,7 @@ export const CartContextProvider = ({ children }) => {
             cartList: cartList,
             addItem: addItemHandler,
             removeItem: removeItemHandler,
-            clear: clearHandler,
+            clearCart: clearHandler,
             totalItems: totalItemsHandler,
             totalPrice: totalPriceHandler
         }}>

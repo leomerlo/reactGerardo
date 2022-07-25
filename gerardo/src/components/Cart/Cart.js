@@ -7,13 +7,14 @@ import { getFirestore, addDoc, collection, writeBatch, doc, getDoc } from 'fireb
 
 const Cart = () => {
 
-  const { cartList, removeItem, totalPrice } = useContext(CartContext)
+  const { cartList, removeItem, totalPrice, clearCart } = useContext(CartContext)
   const [ orderFinished, setOrderFinished ] = useState('')
   const [ orderStep, setOrderStep ] = useState(0)
-  const [user, setUser] = useState({
-    name: 'Leo',
-    phone: '+5491123997318',
-    email: 'merloleandro@gmail.com'
+  const [ formError, setFormError ] = useState('')
+  const [ user, setUser ] = useState({
+    username: '',
+    phone: '',
+    email: ''
   });
   const db = getFirestore();
 
@@ -26,11 +27,33 @@ const Cart = () => {
     setOrderStep(1);
   }
 
-  const finalizarCompra = () => {
+  const handleInputChange = (event) => {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+
+    setUser({
+      [name]: value
+    });
+  }
+
+  const finalizarCompra = (e) => {
+    e.preventDefault();
+    setFormError([]);
+
+    if(
+      user.username === '' ||
+      user.phone === '' ||
+      user.email === ''
+    ) {
+      setFormError('Todos los campos son requeridos. Intentalo nuevamente')
+      return false; 
+    }
+
     const orderCollection = collection(db, "orders");
     const batch = writeBatch(db)
 
-    const orderList = cartList.map((e) => {
+    cartList.map((e) => {
       const ref = doc(db,'products',e.id);
       getDoc(ref).then((item) => {
         batch.update(ref, { stock: item.data().stock - e.quantity });
@@ -41,17 +64,20 @@ const Cart = () => {
         };
       });
     })
-    
-    const docRef = addDoc(orderCollection, {
+
+    const newOrder = {
       date: new Date(),
-      items: orderList,
+      items: cartList,
       user: user,
       total: totalPrice()
-    }).then((e) => {
+    }
+    
+    const docRef = addDoc(orderCollection, newOrder).then((e) => {
       setOrderFinished(e.id);
+      clearCart();
       batch.commit();
     });
-  } 
+  }
 
   return (
     <div>
@@ -98,18 +124,19 @@ const Cart = () => {
                   <>
                     <div className="user-form">
                       <h3>Dejanos tu información para finalizar tu compra.</h3>
+                      {formError}
                       <form>
                         <div className="form-row">
                           <label htmlFor="name">Nombre:</label>
-                          <input id="name" name="name" />
+                          <input id="name" name="username" value={user.name} onChange={handleInputChange} />
                         </div>
                         <div className="form-row">
                           <label htmlFor="phone">Telefono:</label>
-                          <input id="phone" name="phone" />
+                          <input id="phone" name="phone" value={user.name} onChange={handleInputChange} />
                         </div>
                         <div className="form-row">
                           <label htmlFor="mail">Mail:</label>
-                          <input id="mail" name="mail" />
+                          <input id="email" name="email" value={user.name} onChange={handleInputChange} type="email" />
                         </div>
                         <div className="form-row total-value">
                           <button type="submit" onClick={finalizarCompra}>Enviar</button>
@@ -127,10 +154,10 @@ const Cart = () => {
         }
         </>
         :
-        <>
-          <h2>Gracias por tu compra</h2>
+        <div className="text-center">
+          <h2 className="text-lg mb-3">Gracias por tu compra</h2>
           <p>Número de orden: { orderFinished }</p>
-        </>
+        </div>
       }
         
     </div>
